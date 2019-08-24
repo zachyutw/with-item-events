@@ -1,6 +1,6 @@
 # with-item-events
 
-> Make DOM API Specification and easy to use
+> Make any DOM events handler more powerful and Specification with simple way
 
 [![NPM](https://img.shields.io/npm/v/with-item-events.svg)](https://www.npmjs.com/package/with-item-events) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
