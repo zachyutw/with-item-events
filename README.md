@@ -97,6 +97,11 @@ NOTE: React hooks require `react` and `react-dom` version `16.8.0` or higher.
 * TypeScript
 * validation of HOC prop 
 
+## Change Log 
+### 1.0.1
+- add unit test
+- add two commnad events onBlur and onFocus as default
+
 ## Thanks
 This repo was setup with the help of the excellent [`create-react-library`](https://www.npmjs.com/package/create-react-library) and [`redux-react-hook`](https://github.com/facebookincubator/redux-react-hook/blob/master/README.md).
 
