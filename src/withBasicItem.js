@@ -1,6 +1,6 @@
 import React from 'react';
 import { string, func, object, number, oneOfType, element, array, node, arrayOf, shape, bool } from 'prop-types';
-import _ from 'lodash';
+import { pickBy } from 'lodash';
 
 const eventHandler = (meta, item, onChange, actionType, isStopPropagation) => (e) => {
     if (isStopPropagation) {
@@ -31,6 +31,7 @@ const withBasicItem = (Component, eventsFields = []) => {
             onChange = (e, data = {}) => {
                 /**return data as object */
             },
+            className,
             item = {},
             index,
             name = 'any',
@@ -40,11 +41,7 @@ const withBasicItem = (Component, eventsFields = []) => {
             selected,
             ...rest
         } = props;
-
-        const getMeta = () => {
-            return _.pickBy({ id, [name]: value, actionType, selected, index }, _.identity);
-        };
-        const meta = getMeta();
+        const itemMeta = pickBy({ id, [name]: value, actionType, selected, index }, (v) => v !== undefined);
         const getHandlers = (meta) => {
             const defaultHandler = [ ...defaultEventsFields, ...eventsFields ].reduce((handler, { actionType, isStopPropagation }) => {
                 handler[actionType] = eventHandler(meta, item, onChange, actionType, isStopPropagation);
@@ -58,7 +55,7 @@ const withBasicItem = (Component, eventsFields = []) => {
         };
         const handlers = getHandlers(meta);
 
-        return <Component {...rest} {...handlers} {...meta} item={item} />;
+        return <Component {...rest} className={[ className, ...ffMetaClassName ].join(' ')} {...handlers} {...itemMeta} item={item} />;
     };
     wrapper.propTypes = {
         onChange: func,
