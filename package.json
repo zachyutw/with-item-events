@@ -1,6 +1,6 @@
 {
     "name": "with-item-events",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Make any DOM events handler more powerful and Specification with simple way",
     "author": "zachyutw",
     "license": "MIT",
