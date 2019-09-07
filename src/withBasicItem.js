@@ -1,12 +1,6 @@
 import React from 'react';
 import { string, func, object, number, oneOfType, element, array, node, arrayOf, shape, bool } from 'prop-types';
-
-const identify = (obj) =>
-    Object.keys(obj).reduce((acc, key) => {
-        const _acc = acc;
-        if (obj[key] !== undefined) _acc[key] = obj[key];
-        return _acc;
-    }, {});
+import { pickBy } from 'lodash';
 
 const eventHandler = (meta, item, onChange, actionType, isStopPropagation) => (e) => {
     if (isStopPropagation) {
@@ -39,15 +33,18 @@ const withBasicItem = (Component, eventsFields = []) => {
             },
             className,
             item = {},
+            meta = {},
             index,
             name = 'any',
             id,
             value,
+            defaultValue,
             actionType,
             selected,
             ...rest
         } = props;
-        const itemMeta = identify({ id, [name]: value, actionType, selected, index });
+        const itemMeta = pickBy({ id, [name]: value, actionType, selected, index }, (v) => v !== undefined);
+        const ffMetaClassName = Object.keys(pickBy(meta, (v) => v !== undefined)).join(' ');
         const getHandlers = (meta) => {
             const defaultHandler = [ ...defaultEventsFields, ...eventsFields ].reduce((handler, { actionType, isStopPropagation }) => {
                 handler[actionType] = eventHandler(meta, item, onChange, actionType, isStopPropagation);
@@ -59,9 +56,9 @@ const withBasicItem = (Component, eventsFields = []) => {
                 onClick: eventHandler(meta, item, onChange, actionType)
             };
         };
-        const handlers = getHandlers(meta);
+        const handlers = getHandlers(itemMeta);
 
-        return <Component {...rest} className={[ className, ...ffMetaClassName ].join(' ')} {...handlers} {...itemMeta} item={item} />;
+        return <Component {...rest} meta={meta} className={[ className, ...ffMetaClassName ].join(' ')} {...handlers} {...itemMeta} item={item} />;
     };
     wrapper.propTypes = {
         onChange: func,
