@@ -1,6 +1,6 @@
 import React from 'react';
 import { string, func, object, number, oneOfType, element, array, node, arrayOf, shape, bool } from 'prop-types';
-import { pickBy } from 'lodash';
+import pickBy from 'lodash/pickBy';
 
 const eventHandler = (meta, item, onChange, actionType, isStopPropagation) => (e) => {
     if (isStopPropagation) {
@@ -41,6 +41,7 @@ const withBasicItem = (Component, eventsFields = []) => {
             defaultValue,
             actionType,
             selected,
+            input = {},
             ...rest
         } = props;
         const itemMeta = pickBy({ id, [name]: value, actionType, selected, index }, (v) => v !== undefined);
@@ -58,7 +59,7 @@ const withBasicItem = (Component, eventsFields = []) => {
         };
         const handlers = getHandlers(itemMeta);
 
-        return <Component {...rest} meta={meta} className={[ className, ...ffMetaClassName ].join(' ')} {...handlers} {...itemMeta} item={item} />;
+        return <Component {...rest} meta={meta} className={[ className, ...ffMetaClassName ].join(' ')} {...handlers} {...input} {...itemMeta} item={item} />;
     };
     wrapper.propTypes = {
         onChange: func,
