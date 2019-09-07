@@ -14,8 +14,8 @@ const defaultEventsFields = [
     { actionType: 'onMouseLeave', isStopPropagation: true },
     { actionType: 'onMouseOver', isStopPropagation: true },
     { actionType: 'onClickImage', isStopPropagation: true },
-    { actionType: 'onBlur', isStopPropagation: true },
-    { actionType: 'onFocus', isStopPropagation: true }
+    { actionType: 'onBlur', isStopPropagation: false },
+    { actionType: 'onFocus', isStopPropagation: false }
 ];
 
 /**
