@@ -48,6 +48,9 @@ const App = () => {
 
     return (
         <div style={{ padding: '20px' }}>
+            <h1>This is a Example</h1>
+            <h2>Description</h2>
+            <p>{process.env.REACT_APP_DESCRIPTION}</p>
             <hr />
             <h2>Item</h2>
             <ItemOne onChange={_onChange} onTestClick={_onChange} {...fieldTest} />
@@ -68,6 +71,9 @@ const App = () => {
                 </p>
             </div>
             <hr />
+            <a href={process.env.REACT_APP_GITHUB} alt='github'>
+                Github
+            </a>
         </div>
     );
 };
