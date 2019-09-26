@@ -1,2 +1,2 @@
-import withBasicItem from './withBasicItem';
-export default withBasicItem;
+import withItemEvents from './withItemEvents';
+export default withItemEvents;

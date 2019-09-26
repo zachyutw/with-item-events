@@ -2,7 +2,7 @@
 import React, { useState, useCallback } from 'react';
 import withItemEvents from '.';
 import { render, fireEvent, getByTestId } from '@testing-library/react';
-import { get } from 'https';
+
 // import '@testing-library/jest-dom/extend-expect';
 
 const ITEM_TITLE_1 = `Click to show item's name and dispatch item to parent componet`;
