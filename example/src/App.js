@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import withItemEvents from 'with-item-events';
+import withItemEvents from './withItemEvents';
 
 const ITEM_TITLE_1 = `Click to show item's name and dispatch item to parent componet`;
 const ITEM_TITLE_2 = 'Click  to show [name]:value API  and dispatch item and [name]:item to parent componet';

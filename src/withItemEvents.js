@@ -25,7 +25,7 @@ const defaultEventsFields = [
  * @param {*} name: the key to create specific value back
  * @param {*} value: this value to create specific value back
  */
-const withBasicItem = (Component, eventsFields = []) => {
+const withItemEvents = (Component, eventsFields = []) => {
     const wrapper = (props) => {
         const {
             onChange = (e, data = {}) => {
@@ -72,8 +72,8 @@ const withBasicItem = (Component, eventsFields = []) => {
     };
     return wrapper;
 };
-withBasicItem.propTypes = {
+withItemEvents.propTypes = {
     Component: element.isRequired,
     eventsFields: arrayOf(shape({ actionType: string.isRequired, isStopPropagation: bool }))
 };
-export default withBasicItem;
+export default withItemEvents;
